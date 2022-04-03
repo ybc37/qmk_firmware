@@ -177,3 +177,27 @@ void keyboard_post_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t layer) {
     return layer;
 }
+
+bool led_update_user(led_t leds) {
+  if (leds.caps_lock) {
+    const annepro2Led_t color = {
+        .p.red = 0xff,
+        .p.green = 0x00,
+        .p.blue = 0x00,
+        .p.alpha = 0xff
+    };
+
+    annepro2LedMaskSetKey(3, 0, color);
+  } else {
+    const annepro2Led_t color = {
+        .p.red = 0xff,
+        .p.green = 0x00,
+        .p.blue = 0x00,
+        .p.alpha = 0x00
+    };
+
+    annepro2LedMaskSetKey(3, 0, color);
+  }
+
+  return true;
+}
