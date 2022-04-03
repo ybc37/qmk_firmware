@@ -161,11 +161,17 @@ void keyboard_post_init_user(void) {
     // Here are two common functions that you can use. For more LED functions, refer to the file "qmk_ap2_led.h"
 
     // annepro2-shine disables LEDs by default. Uncomment this function to enable them at startup.
-    // annepro2LedEnable();
+    annepro2LedEnable();
 
     // Additionally, it also chooses the first LED profile by default. Refer to the "profiles" array in main.c in
     // annepro2-shine to see the order. Replace "i" with the index of your preferred profile. (i.e the RED profile is index 0)
-    // annepro2LedSetProfile(i);
+    annepro2LedSetProfile(0);
+
+    // TODO: Set intensity to lowest
+    // Looping doesn't seem to work reliable
+    // for (int i = 0; i < 7; i++) {
+    //     annepro2LedNextIntensity();
+    // }
 }
 
 layer_state_t layer_state_set_user(layer_state_t layer) {
