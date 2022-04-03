@@ -6,6 +6,7 @@
 enum anne_pro_layers {
   _BASE_LAYER,
   _FN1_LAYER,
+  _MOUSE_LAYER,
   _NUM_LAYER,
   _FN2_LAYER,
   _DIRECT_LAYER,
@@ -39,7 +40,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  [_BASE_LAYER] = KEYMAP( /* Base */
     KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
     LT(_NUM_LAYER,KC_TAB), KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
-    MT(MOD_LCTL,KC_ESC), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
+    MT(MOD_LCTL,KC_ESC), LT(_MOUSE_LAYER,KC_A), KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
     TD(TD_LSFT_CAPS), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
     KC_LCTL, KC_LGUI, KC_LALT, LT(_FN1_LAYER,KC_SPC), KC_RALT, MO(_FN1_LAYER), MO(_FN2_LAYER), KC_RCTL
 ),
@@ -65,6 +66,29 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     KC_TRNS, KC_MPRV, KC_MPLY, KC_MNXT, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_PGUP, KC_PGDN, KC_TRNS,
     KC_TRNS, KC_VOLU, KC_VOLD, KC_MUTE, KC_TRNS, KC_TRNS, KC_TRNS, KC_APP, KC_TRNS, KC_INS, KC_DEL, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+),
+
+  /*
+  * Layer _MOUSE_LAYER
+  * ,-----------------------------------------------------------------------------------------.
+  * |  `  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |    Bksp   |
+  * |-----------------------------------------------------------------------------------------+
+  * | Tab/Num|  q  |  w  |  e  |  r  |  t  |  y  |  7  |  8  |  9  |  p  |  [  |  ]  |   \    |
+  * |-----------------------------------------------------------------------------------------+
+  * | Esc/Crtl|  a  |  s  |  d  |  f  |  g  |  h  |  4  |  5  |  6  |  ;  |  '  |    Enter    |
+  * |-----------------------------------------------------------------------------------------+
+  * | Shift/Caps |  z  |  x  |  c  |  v  |  b  |  0  |  1  |  2  |  3  |  /  |    Shift       |
+  * |-----------------------------------------------------------------------------------------+
+  * | Ctrl  |  L1   |  Alt  |             Space/FN1           |  Alt  |  FN1  |  FN2  | Ctrl  |
+  * \-----------------------------------------------------------------------------------------/
+  *
+  */
+ [_MOUSE_LAYER] = KEYMAP(
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, KC_TRNS, KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_MS_BTN1, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
   /*
