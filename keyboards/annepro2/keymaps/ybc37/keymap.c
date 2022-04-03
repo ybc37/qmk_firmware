@@ -6,6 +6,7 @@
 enum anne_pro_layers {
   _BASE_LAYER,
   _FN1_LAYER,
+  _NUM_LAYER,
   _FN2_LAYER,
   _DIRECT_LAYER,
 };
@@ -25,7 +26,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 * ,-----------------------------------------------------------------------------------------.
 * |  `  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |    Bksp   |
 * |-----------------------------------------------------------------------------------------+
-* | Tab    |  q  |  w  |  e  |  r  |  t  |  y  |  u  |  i  |  o  |  p  |  [  |  ]  |   \    |
+* | Tab/Num|  q  |  w  |  e  |  r  |  t  |  y  |  u  |  i  |  o  |  p  |  [  |  ]  |   \    |
 * |-----------------------------------------------------------------------------------------+
 * | Esc/Ctrl|  a  |  s  |  d  |  f  |  g  |  h  |  j  |  k  |  l  |  ;  |  '  |    Enter    |
 * |-----------------------------------------------------------------------------------------+
@@ -37,7 +38,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_BASE_LAYER] = KEYMAP( /* Base */
     KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
-    KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
+    LT(_NUM_LAYER,KC_TAB), KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
     MT(MOD_LCTL,KC_ESC), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
     TD(TD_LSFT_CAPS), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
     KC_LCTL, KC_LGUI, KC_LALT, LT(_FN1_LAYER,KC_SPC), KC_RALT, MO(_FN1_LAYER), MO(_FN2_LAYER), KC_RCTL
@@ -48,7 +49,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   * ,-----------------------------------------------------------------------------------------.
   * |  `  |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |  DELETE   |
   * |-----------------------------------------------------------------------------------------+
-  * | Tab    |  q  |MSTP |  e  |  r  |  t  |  y  |  u  |  i  |  o  | PS | HOME | END |   \    |
+  * | Tab/Num|  q  |MSTP |  e  |  r  |  t  |  y  |  u  |  i  |  o  | PS | HOME | END |   \    |
   * |-----------------------------------------------------------------------------------------+
   * | Esc/Crtl|MPREV|MPLY |MNXT |  f  |  g  |LEFT |DOWN | UP  |RIGHT| PGUP|PGDN |    Enter    |
   * |-----------------------------------------------------------------------------------------+
@@ -67,11 +68,34 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 ),
 
   /*
+  * Layer _NUM_LAYER
+  * ,-----------------------------------------------------------------------------------------.
+  * |  `  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |    Bksp   |
+  * |-----------------------------------------------------------------------------------------+
+  * | Tab/Num|  q  |  w  |  e  |  r  |  t  |  y  |  7  |  8  |  9  |  p  |  [  |  ]  |   \    |
+  * |-----------------------------------------------------------------------------------------+
+  * | Esc/Crtl|  a  |  s  |  d  |  f  |  g  |  h  |  4  |  5  |  6  |  ;  |  '  |    Enter    |
+  * |-----------------------------------------------------------------------------------------+
+  * | Shift/Caps |  z  |  x  |  c  |  v  |  b  |  0  |  1  |  2  |  3  |  /  |    Shift       |
+  * |-----------------------------------------------------------------------------------------+
+  * | Ctrl  |  L1   |  Alt  |             Space/FN1           |  Alt  |  FN1  |  FN2  | Ctrl  |
+  * \-----------------------------------------------------------------------------------------/
+  *
+  */
+ [_NUM_LAYER] = KEYMAP(
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_7, KC_8, KC_9, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_4, KC_5, KC_6, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_0, KC_1, KC_2, KC_3, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+),
+
+  /*
   * Layer _FN2_LAYER
   * ,-----------------------------------------------------------------------------------------.
   * |  `  | BT1 | BT2 | BT3 | BT4 |  F5 |  F6 |  F7 |LEDOF|LEDON| F10 | F11 | F12 |    Bksp   |
   * |-----------------------------------------------------------------------------------------+
-  * | Tab    |  q  | UP  |  e  |  r  |  t  |  y  |  u  |  i  |  o  | PS | HOME | END |   \    |
+  * | Tab/Num|  q  | UP  |  e  |  r  |  t  |  y  |  u  |  i  |  o  | PS | HOME | END |   \    |
   * |-----------------------------------------------------------------------------------------+
   * | Esc/Ctrl|LEFT |DOWN |RIGHT|  f  |  g  |  h  |  j  |  k  |  l  | PGUP|PGDN |    Enter    |
   * |-----------------------------------------------------------------------------------------+
